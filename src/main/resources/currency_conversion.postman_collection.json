@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "09f08201-d8f6-43f6-a464-c6732bb0f906",
+		"name": "currency_conversion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20740314"
+	},
+	"item": [
+		{
+			"name": "makeconversion",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"from\":\"EUR\",\n    \"to\":\"USD\",\n    \"amount\":\"14.4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/currency/convert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"currency",
+						"convert"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
