@@ -32,6 +32,12 @@ public class ConversionService {
     }
 
 
+    /**
+     * Make api requests to two endpoints based on their rank from decideUrl() method
+     * if the first fails it makes a call to the second.
+     * @param fromCurrency
+     * @return
+     */
     public Mono<String> fetchRate(String fromCurrency) {
         return decideUrl().flatMap(map -> {
             String firstUrl = map.get("first")+fromCurrency;
@@ -65,6 +71,12 @@ public class ConversionService {
         });
     }
 
+    /**
+     * a method responsible for converting incoming amount fro base currency to the target currency
+     * it fetches conversion rate from fetchRate()
+     * @param request
+     * @return
+     */
     public Mono<ConversionResponse> convert(ConversionRequest request) {
         return fetchRate(request.getFrom())
                 .flatMap(rateResponse -> {
@@ -80,6 +92,11 @@ public class ConversionService {
                 });
 
     }
+
+    /**
+     * Randomly decide the url and send by labeling first and second
+     * @return Mono of randomizedUrl
+     */
     private Mono<Map<String, String>> decideUrl(){
         List<String> urls = new java.util.ArrayList<>(List.of(externalApi1, externalApi2));
         Random random = new Random();
